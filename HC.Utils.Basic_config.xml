@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<constants>
+  <AssemblyList>
+    MyAssembly,C:\HC\bin\HC.exe,60
+  </AssemblyList>
+  <PoolCapacity>1000</PoolCapacity>
+  <CacheTypes>
+    MyCache,BLob
+  </CacheTypes>
+  <PlotPath>
+    C:\HC\Data\PlotData
+  </PlotPath>
+  <DbPath>C:\HC\Data\Db</DbPath>
+  <VbaFunctionDefault>
+  </VbaFunctionDefault>
+  <AddTitles>true</AddTitles>
+  <CalcThreads>30</CalcThreads>
+</constants>

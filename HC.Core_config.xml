@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<constants>
+<TopicInterface>
+0mq
+</TopicInterface>
+<assembly_cache>
+C:\HC\bin\AssemblyCache
+    c:\HC\bin\AssemblyCache\CustomByEnv
+    C:\HC\HC.Tests\bin\Release
+</assembly_cache>
+<KnownAssemblies>
+  HC.Core.dll,c:\HC\HC.Tests\bin\Release,c:\HC\HC.Tests\bin\Release
+  HC.Analytics.dll,c:\HC\HC.Tests\bin\Release,c:\HC\HC.Tests\bin\Release
+  HC.Utils.dll,c:\HC\HC.Tests\bin\Release,c:\HC\HC.Tests\bin\Release
+</KnownAssemblies>
+<LiveGridServiceTopic>
+LiveGridTopicService
+</LiveGridServiceTopic>
+<LiveGridClientTopic>
+LiveGridTopicClient
+</LiveGridClientTopic>
+<TopicServerAddr>
+net.tcp://localhost:7002/Sub
+</TopicServerAddr>
+<TopicServerName>
+horacio-fujitsu
+</TopicServerName>
+<DataServerName>
+horacio-fujitsu
+</DataServerName>
+<IntradayDataServerName>
+horacio-fujitsu
+</IntradayDataServerName>
+<TopicPublisher>
+net.tcp://[server]:7001/Pub
+</TopicPublisher>
+<TopicSubscriber>
+net.tcp://[server]:7002/Sub
+</TopicSubscriber>
+<ReqRespPort>
+8901
+</ReqRespPort>
+<IntradayReqRespPort>
+9001
+</IntradayReqRespPort>
+<ReqRespConnections>
+5
+</ReqRespConnections>
+<GuiReqRespPort>
+8801
+</GuiReqRespPort>
+<DistReqRespPort>
+6801
+</DistReqRespPort>
+<DistReqRespConnection>
+5
+</DistReqRespConnection>
+<GuiReqRespConnection>
+10
+</GuiReqRespConnection>
+<GuiServerName>
+locahost
+</GuiServerName>
+<DistServerName>
+locahost
+</DistServerName>
+<DataProviderToPath>
+MyDataProvider,f:\HC.Data\DataCache
+</DataProviderToPath>
+<CountryLookup>
+Sweeden,SW
+    Spain,SP
+    United Kingdom,UK
+    France,FR
+    Germany,DE
+    Italy,IT
+    United States of America,US
+</CountryLookup>
+<Continents>
+Europe
+    North-America
+    Asia
+</Continents>
+<SelfDescribingClassSchemaDir>
+c:\HC\Config\SelfDescribingClasses
+</SelfDescribingClassSchemaDir>
+<UiParamsPath>
+C:\HC\Config\UiParams
+</UiParamsPath>
+<command>
+</command>
+<CompressPoolData>
+true
+</CompressPoolData>
+<DbSerializerName>
+TsCsvCache
+</DbSerializerName>
+<Servers>
+    local
+</Servers>
+<LookupPaths>
+    C:\HC\HC.Utils
+</LookupPaths>
+<CalcThreads>
+1
+</CalcThreads>
+<DefaultIntradayCacheDataPath>
+y:\HC.Data\DataCache
+</DefaultIntradayCacheDataPath>
+<DefaultCacheDataPath>
+k:\HC.Data\DataCache
+</DefaultCacheDataPath>
+<ReservedWords>
+abstract
+    case
+    continue
+    else
+    finally
+    if
+    is
+    object
+    protected
+    sealed
+    struct
+    typeof
+    using
+    as
+    catch
+    decimal
+    enum
+    fixed
+    implicit
+    lock
+    operator
+    public
+    short
+    switch
+    uint
+    virtual
+    base
+    char
+    default
+    event
+    float
+    in
+    long
+    out
+    readonly
+    sizeof
+    this
+    ulong
+    void
+    bool
+    checked
+    delegate
+    explicit
+    for
+    int
+    namespace
+    override
+    ref
+    stackalloc
+    throw
+    unchecked
+    volatile
+    break
+    class
+    do
+    extern
+    foreach
+    interface
+    new
+    params
+    return
+    static
+    true
+    unsafe
+    while
+    byte
+    const
+    double
+    false
+    goto
+    internal
+    null
+    private
+    sbyte
+    string
+    try
+    ushort
+</ReservedWords>
+<KnownTypes>
+String
+    Double
+    DateTime
+    Int32
+    Boolean
+    Byte
+    Single
+    Int64
+    Int16
+    IList
+    IDictionary
+    Array
+    AsyncRequestFinishEvent
+    EnumRequestType
+    SelfDescribingClass
+    DbDataRequest
+    RequestType
+    RequestDataMessage
+    TopicMessage
+</KnownTypes>
+<ResultsDataPath>
+k:\HC\Results
+</ResultsDataPath>
+<DbOpenConnections>
+10
+</DbOpenConnections>
+<DbReadThreadSize>
+2
+</DbReadThreadSize>
+<CalcTopicName>
+MyCalcTopic
+</CalcTopicName>
+<IntradayProviders>
+</IntradayProviders>
+<EmailToList>
+email@email.com
+</EmailToList>
+<EmailName>
+emailName
+</EmailName>
+<EmailPsw>
+EmailPsw
+</EmailPsw>
+<EmailHost>
+email.com
+</EmailHost>
+<EmailPort>
+123
+</EmailPort>
+<EmailAddr>
+email@email.com
+</EmailAddr>
+</constants>
