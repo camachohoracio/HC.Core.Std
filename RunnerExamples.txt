@@ -1,0 +1,204 @@
+        public static void LoadInfrastructure()
+        {
+            try
+            {
+                AssemblyCache.Initialize();
+                KnownTypesCache.LoadKnownTypes();
+                TsDataProviderHelper.LoadDataProvidersTypes();
+                LiveGuiPublisher.Connect(
+                    Config.GetGuiServerName(),
+                    Config.GetGuiReqRespPort(),
+                    Config.GetGuiReqRespConnections());
+                ARequestResponseClient.Connect(
+                    Config.GetDataServerName(),
+                    Config.GetReqRespPort(),
+                    Config.GetReqRespConnections());
+
+                ARequestResponseClient.Connect(
+                    Config.GetIntradayDataServerName(),
+                    Config.GetIntradayReqRespPort(),
+                    Config.GetReqRespConnections());
+
+                Console.WriteLine("Done infrastructure!");
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(ex);
+            }
+        }
+
+		
+		////////////////////////////// start dis child///////////////////////////
+		                Logger.Log("Starting distCalcChild...");
+                AssemblyCache.Initialize();
+                SerializerCache.GetSerializer(typeof(StdCalcWorker));
+                KnownTypesCache.LoadKnownTypes();
+                TsDataProviderHelper.LoadDataProvidersTypes();
+                string strServerName = Core.Config.GetTopicServerName();
+                ARequestResponseClient.Connect(
+                    Config.GetDataServerName(),
+                    Config.GetReqRespPort(),
+                    Config.GetReqRespConnections());
+
+                ARequestResponseClient.Connect(
+                    Config.GetIntradayDataServerName(),
+                    Config.GetIntradayReqRespPort(),
+                    Config.GetReqRespConnections());
+
+                LiveGuiPublisher.Connect(
+                    Config.GetGuiServerName(),
+                    Config.GetGuiReqRespPort(),
+                    Config.GetGuiReqRespConnections());
+                HCConfig.LoadDefaultConfigs();
+                DistWorker.Connect(strServerName);
+                DistWorker.ThreadsStatic = intThreads;
+                Logger.Log("Started distCalcChild.");
+
+                while (true)
+                {
+                    Thread.Sleep(1000);
+                }
+
+		////////////////////////////////////////// load topic server //////////////////////
+		
+		        const Int32 SW_MINIMIZE = 6;
+
+        [DllImport("Kernel32.dll", CallingConvention = CallingConvention.StdCall, SetLastError = true)]
+        private static extern IntPtr GetConsoleWindow();
+
+        [DllImport("User32.dll", CallingConvention = CallingConvention.StdCall, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool ShowWindow([In] IntPtr hWnd, [In] Int32 nCmdShow);
+
+        private static void MinimizeConsoleWindow()
+        {
+            IntPtr hWndConsole = GetConsoleWindow();
+            ShowWindow(hWndConsole, SW_MINIMIZE);
+        }
+
+        static void Main()
+        {
+            try
+            {
+                MinimizeConsoleWindow();
+                TopicClientHeartBeat.DoNotPing = true;
+                AssemblyCache.Initialize();
+                KnownTypesCache.LoadKnownTypes();
+                //TopicPublisher.Connect(Core.Config.GetTopicServerName());
+                TopicServer.StartTopicService();
+                TopicServerHeartBeat.StartHeartBeat(Core.Config.GetTopicServerName());
+
+                while (true)
+                {
+                    Thread.Sleep(1000);
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+
+
+		//////////////////////////////////////////////////// ts data service /////////////////////////////////////////
+		            try
+            {
+                string strMessage = "Starting ts data service...";
+                Logger.Log(strMessage);
+                Console.WriteLine(strMessage);
+                DistConstants.IsServerMode = true;
+                AssemblyCache.Initialize();
+                KnownTypesCache.LoadKnownTypes();
+                TsDataProviderHelper.LoadDataProvidersTypes();
+                bool blnIsNormalTsService = false;
+                string strServerName;
+                int intReqRespPort;
+                if (args == null ||
+                    args.Length == 0)
+                {
+                    Console.Title = "TsDataService";
+                    strServerName = Core.Config.GetDataServerName();
+                    intReqRespPort = Core.Config.GetReqRespPort();
+                    blnIsNormalTsService = true;
+                }
+                else
+                {
+                    Console.Title = "Intrday TsDataService";
+                    strServerName = Core.Config.GetIntradayDataServerName();
+                    intReqRespPort = Core.Config.GetIntradayReqRespPort();
+                }
+                ReqRespServer.StartService(
+                    strServerName,
+                    intReqRespPort,
+                    Core.Config.GetReqRespConnections());
+
+                LiveGuiPublisher.Connect(
+                    Core.Config.GetGuiServerName(),
+                    Core.Config.GetGuiReqRespPort(),
+                    Core.Config.GetGuiReqRespConnections());
+                LoggerPublisher.ConnectSubscriber(
+                    Core.Config.GetTopicServerName());
+                
+                DataProviderService.Connect(
+                    strServerName,
+                    intReqRespPort);
+
+                ARequestResponseClient.Connect(
+                    strServerName,
+                    intReqRespPort,
+                    Core.Config.GetReqRespConnections());
+
+                if (!blnIsNormalTsService)
+                {
+                    new Mt4BarCache().Init(
+                        IntradayStratHelper.BAR_SIZE_TECH_ANALYSIS);
+                    new Mt4BarCache().Init(
+                        IntradayStratHelper.BAR_SIZE_MICRO);
+                    Mt4QuotesCollector.CheckCollectorCheckWorker();
+                }
+                strMessage = "Started ts data service";
+                Logger.Log(strMessage);
+                Console.WriteLine(strMessage);
+                while (true)
+                {
+                    Thread.Sleep(1000);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(ex);
+            }
+
+			
+			////////////////////////////////////// gui service ////////////////////////////////////
+			                MinimizeConsoleWindow();
+                
+                string strMessage = "Starting GUI data service...";
+                Logger.Log(strMessage);
+                Console.WriteLine(strMessage);
+                DistConstants.IsServerMode = true;
+                AssemblyCache.Initialize();
+                KnownTypesCache.LoadKnownTypes();
+                TsDataProviderHelper.LoadDataProvidersTypes();
+                string strServerName = Core.Config.GetGuiServerName();
+                ReqRespServer.StartService(
+                    strServerName,
+                    Core.Config.GetGuiReqRespPort(),
+                    Core.Config.GetGuiReqRespConnections());
+                LiveGuiPublisher.Connect(
+                    Core.Config.GetGuiServerName(),
+                    Core.Config.GetGuiReqRespPort(),
+                    Core.Config.GetGuiReqRespConnections());
+                LiveGuiCacheService.Connect(strServerName);
+                DataProviderService.Connect(
+                    strServerName,
+                    Core.Config.GetGuiReqRespPort());
+
+                //TestChartThreadWorker();
+                strMessage = "Started GUI data service";
+                Logger.Log(strMessage);
+                Console.WriteLine(strMessage);
+                while (true)
+                {
+                    Thread.Sleep(1000);
+                }
