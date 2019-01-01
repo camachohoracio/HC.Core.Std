@@ -1,0 +1,76 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DynamicCompilation\CodeDom\**" />
+    <Compile Remove="Patterns\**" />
+    <Compile Remove="Time\Calendars\**" />
+    <Compile Remove="Time\DayCounters\**" />
+    <Compile Remove="Zip\LZ4\**" />
+    <Compile Remove="Zip\SharpZipLib\**" />
+    <EmbeddedResource Remove="DynamicCompilation\CodeDom\**" />
+    <EmbeddedResource Remove="Patterns\**" />
+    <EmbeddedResource Remove="Time\Calendars\**" />
+    <EmbeddedResource Remove="Time\DayCounters\**" />
+    <EmbeddedResource Remove="Zip\LZ4\**" />
+    <EmbeddedResource Remove="Zip\SharpZipLib\**" />
+    <None Remove="DynamicCompilation\CodeDom\**" />
+    <None Remove="Patterns\**" />
+    <None Remove="Time\Calendars\**" />
+    <None Remove="Time\DayCounters\**" />
+    <None Remove="Zip\LZ4\**" />
+    <None Remove="Zip\SharpZipLib\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Exceptions\Error.cs" />
+    <Compile Remove="Time\DateTypes.cs" />
+    <Compile Remove="Time\DayCounter.cs" />
+    <Compile Remove="Time\Imm.cs" />
+    <Compile Remove="Time\Period.cs" />
+    <Compile Remove="Time\Schedule.cs" />
+    <Compile Remove="Time\Settings.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.8.11" />
+    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="lz4net" Version="1.0.15.93" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <PackageReference Include="Mono.Posix.NETStandard" Version="1.0.0" />
+    <PackageReference Include="NUnit" Version="3.11.0" />
+    <PackageReference Include="SharpZipLib" Version="1.1.0" />
+    <PackageReference Include="System.CodeDom" Version="4.5.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.109.2" />
+    <PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ClrZmq">
+      <HintPath>..\bin\AssemblyCache\ClrZmq\bin\Release\netstandard2.0\ClrZmq.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="libzmq.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="SQLite.Interop.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
